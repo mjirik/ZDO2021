@@ -8,7 +8,10 @@ import zdo2021.main
 
 def test_run_random():
     vdd = zdo2021.main.VarroaDetector()
+
+    # Nastavte si v operačním systém proměnnou prostředí 'VARROA_DATA_PATH' s cestou k datasetu
     dataset_path = os.getenv('VARROA_DATA_PATH')
+
     # print(f'dataset_path = {dataset_path}')
     files = glob.glob(f'{dataset_path}/images/*.jpg')
     cislo_obrazku = np.random.randint(0, len(files))
