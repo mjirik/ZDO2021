@@ -3,14 +3,16 @@ import os
 import skimage.io
 import glob
 import numpy as np
+from pathlib import Path
 import zdo2021.main
 
 
 def test_run_random():
     vdd = zdo2021.main.VarroaDetector()
 
-    # Nastavte si v operačním systém proměnnou prostředí 'VARROA_DATA_PATH' s cestou k datasetu
-    dataset_path = os.getenv('VARROA_DATA_PATH')
+    # Nastavte si v operačním systém proměnnou prostředí 'VARROA_DATA_PATH' s cestou k datasetu.
+    # Pokud není nastavena, využívá se testovací dataset tests/test_dataset
+    dataset_path = os.getenv('VARROA_DATA_PATH_', default=Path(__file__).parent / 'test_dataset/')
 
     # print(f'dataset_path = {dataset_path}')
     files = glob.glob(f'{dataset_path}/images/*.jpg')
