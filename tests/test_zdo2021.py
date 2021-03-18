@@ -21,7 +21,16 @@ def test_run_random():
 
     im = skimage.io.imread(filename)
     imgs = np.expand_dims(im, axis=0)
-    print(f"imgs.shape={imgs.shape}")
-
+    # print(f"imgs.shape={imgs.shape}")
     prediction = vdd.predict(imgs)
-    assert prediction.shape[0] == imgs.shape[0]
+
+    assert "image_id" in prediction[0]
+    assert "bbox" in prediction[0]
+
+    # import json
+    # gt_ann = json.loads(Path(dataset_path)/"annotations/instances_default.json")
+    # assert f1score() > 0.55
+
+
+def f1score(gt_ann, prediction):
+    pass
