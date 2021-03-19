@@ -7,5 +7,9 @@ class VarroaDetector():
         pass
 
     def predict(self, data):
+        """
+        :param data: np.ndarray with shape [pocet_obrazku, vyska, sirka, barevne_kanaly]
+        :return: shape [pocet_obrazku, vyska, sirka], 0 - nic, 1 - varroa destructor
+        """
         output = np.zeros_like(data)
         return output
