@@ -24,13 +24,24 @@ def test_run_random():
     # print(f"imgs.shape={imgs.shape}")
     prediction = vdd.predict(imgs)
 
-    assert "image_id" in prediction[0]
-    assert "bbox" in prediction[0]
+
+    assert prediction.shape[0] == imgs.shape[0]
+
+
+    # Toto se bude spouštět všude mimo GitHub
+    if not os.getenv('CI'):
+        import matplotlib.pyplot as plt
+        plt.imshow(prediction[0])
+        plt.show()
+
 
     # import json
     # gt_ann = json.loads(Path(dataset_path)/"annotations/instances_default.json")
-    # assert f1score() > 0.55
+    # assert f1score(ground_true_masks, prediction) > 0.55
 
 
 def f1score(gt_ann, prediction):
+    pass
+
+def prepare_ground_true_masks(gt_ann, filname):
     pass
