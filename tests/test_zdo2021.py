@@ -6,6 +6,8 @@ import numpy as np
 from pathlib import Path
 import zdo2021.main
 
+# cd ZDO2021
+# python -m pytest
 
 def test_run_random():
     vdd = zdo2021.main.VarroaDetector()
