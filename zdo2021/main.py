@@ -7,5 +7,6 @@ class VarroaDetector():
         pass
 
     def predict(self, data):
+        print("ahoj")
         output = np.zeros_like(data)
         return output
