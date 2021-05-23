@@ -45,7 +45,7 @@ def test_run_all():
     # Nastavte si v operačním systém proměnnou prostředí 'VARROA_DATA_PATH' s cestou k datasetu.
     # Pokud není nastavena, využívá se testovací dataset tests/test_dataset
     dataset_path = os.getenv('VARROA_DATA_PATH_', default=Path(__file__).parent / 'test_dataset/')
-    dataset_path = Path(r"H:\biology\orig\zdo_varroa_detection_coco_001")
+    # dataset_path = Path(r"H:\biology\orig\zdo_varroa_detection_coco_001")
 
     # print(f'dataset_path = {dataset_path}')
     files = glob.glob(f'{dataset_path}/images/*.jpg')
@@ -63,6 +63,11 @@ def test_run_all():
         with open(ann_pth, 'r') as infile:
             gt_ann = json.load(infile)
         ground_true_mask = prepare_ground_true_mask(gt_ann, filename)
+        # if True:
+        #     from matplotlib import pyplot as plt
+        #     plt.imshow(im)
+        #     plt.contour(ground_true_mask)
+        #     plt.show()
         f1i = f1score(ground_true_mask, prediction)
         # assert f1i > 0.55
         f1s.append(f1i)
@@ -88,7 +93,7 @@ def prepare_ground_true_mask(gt_ann, filename):
     for ann_im in gt_ann['images']:
         if  ann_im["file_name"] == Path(filename).name:
             # mask = np.zeros([], dtype=bool)
-            M = np.zeros((ann_im["width"], ann_im["height"]), dtype=bool)
+            M = np.zeros((ann_im["height"], ann_im["width"]), dtype=bool)
             immage_id = ann_im["id"]
             for ann in gt_ann['annotations']:
                 if ann["image_id"] == immage_id:
