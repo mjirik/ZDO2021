@@ -12,5 +12,5 @@ class VarroaDetector():
         :return: shape [pocet_obrazku, vyska, sirka], 0 - nic, 1 - varroa destructor
         """
         print("ahoj")
-        output = np.zeros_like(data)
+        output = np.zeros(data.shape[:3])
         return output
