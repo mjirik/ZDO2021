@@ -17,7 +17,7 @@ def test_run_random():
     # Nastavte si v operačním systém proměnnou prostředí 'VARROA_DATA_PATH' s cestou k datasetu.
     # Pokud není nastavena, využívá se testovací dataset tests/test_dataset
     dataset_path = os.getenv('VARROA_DATA_PATH_', default=Path(__file__).parent / 'test_dataset/')
-    dataset_path = Path(r"H:\biology\orig\zdo_varroa_detection_coco_001")
+    # dataset_path = Path(r"H:\biology\orig\zdo_varroa_detection_coco_001")
 
     # print(f'dataset_path = {dataset_path}')
     files = glob.glob(f'{dataset_path}/images/*.jpg')
