@@ -63,7 +63,7 @@ def test_run_all():
         with open(ann_pth, 'r') as infile:
             gt_ann = json.load(infile)
         ground_true_mask = prepare_ground_true_mask(gt_ann, filename, dataset=True)
-        f1i = f1score(ground_true_mask, prediction, im, show=False)
+        f1i = f1score(ground_true_mask, prediction, im, show=True)
         # assert f1i > 0.55
         f1s.append(f1i)
 
@@ -79,9 +79,9 @@ def f1score(ground_true_mask:np.ndarray, prediction:np.ndarray, image=None, show
     :param prediction:
     :return:
     """
-    # if (ground_true_mask.shape[-1] == prediction.shape[-2]) and (ground_true_mask.shape[-2] == prediction.shape[-1]):
-    #     print(f"Warning: Prediction shape [{ground_true_mask.shape}] does not fit ground true shape [{prediction.shape}]. Tansposition applied.")
-    #     prediction=prediction.transpose()
+    if (ground_true_mask.shape[-1] == prediction.shape[-2]) and (ground_true_mask.shape[-2] == prediction.shape[-1]):
+        print(f"Warning: Prediction shape [{ground_true_mask.shape}] does not fit ground true shape [{prediction.shape}]. Tansposition applied.")
+        ground_true_mask=np.rot90(ground_true_mask, k=1)
 
     if ground_true_mask.shape[-1] != prediction.shape[-1]:
         raise ValueError(f"Prediction shape [{ground_true_mask.shape}] does not fit ground true shape [{prediction.shape}]")
